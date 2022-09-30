@@ -50,6 +50,26 @@ function mostrarPeliculas(arrayPeliculas){
                 generos += `${genre.name} - `;
             }
             generos = generos.substring(0,generos.length -2)
+
+            stars = ""
+            let i = 0
+            score = (Math.round(pelicula.vote_average)/2)-1;
+            console.log(score)
+            while(i<score){
+                stars += `<span class="fa fa-star checked"></span>`
+                i++
+            }
+            if( Number.isInteger(score) == false) {
+                stars += `<span class="fa fa-star-half-o checked"></span>`
+                i++
+            } else {stars += `<span class="fa fa-star checked"></span>`
+                i++
+            }
+            while(i<5){
+                stars += `<span class="fa fa-star-o"></span>`
+                i++
+            }
+            
             contenidoHTML += `
             <li class="list-group-item bg-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
                 <div class="row">
@@ -58,9 +78,8 @@ function mostrarPeliculas(arrayPeliculas){
                         <p class="text-muted">${pelicula.tagline}</p>
                     </div>
                     <div class="col-2 text-white">
-                        <p>${pelicula.vote_average}</p>
+                        <p>${stars}</p>
                     </div>
-                   
                 </div>
             </li>
             <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
@@ -72,26 +91,26 @@ function mostrarPeliculas(arrayPeliculas){
                     <p>${pelicula.overview}</p>
                     <hr>
                     <div class="row">
-                        <div class="col-9">
-                            <p>${generos}</p>
+                        <div class="col-9 col-lg-11">
+                            <p class="text-muted">${generos}</p>
                         </div>
-                        <div class="col-3">
-                            <button class="btn"></button>
+                        <div class="col-3 col-lg-1">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Más
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>Año: ${pelicula.release_date.split('-')[0]}</li>
+                                    <li>Duración: ${pelicula.runtime} mins</li>
+                                    <li>Presupuesto: $${pelicula.budget}</li>
+                                    <li>Ganancias: $${pelicula.revenue}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     
                     
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Más
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>Año: ${pelicula.release_date.split('-')[0]}</li>
-                            <li>Duración: ${pelicula.runtime} mins</li>
-                            <li>Presupuesto: $${pelicula.budget}</li>
-                            <li>Ganancias: $${pelicula.revenue}</li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
             `;
