@@ -78,11 +78,11 @@ function mostrarPeliculas(arrayPeliculas){
             contenidoHTML += `
             <li class="list-group-item bg-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#${proxid}" aria-controls="proxid">
                 <div class="row">
-                    <div class="col-8 col-sm-9 col-md-10 col-xl-11 text-white">
+                    <div class="col-8 col-sm-9 col-md-10 col-xl-10 text-white">
                         <h5>${pelicula.title}</h5>
                         <p class="text-muted">${pelicula.tagline}</p>
                     </div>
-                    <div class="col-4 col-sm-3 col-md-2 col-xl-1 text-white">
+                    <div class="col-4 col-sm-3 col-md-2 col-xl-2 text-white">
                         <p>${stars}</p>
                     </div>
                 </div>
