@@ -48,7 +48,7 @@ function mostrarPeliculas(arrayPeliculas){
         if((contenidoBuscador != undefined) && (contenidoBuscador != "") && busquedaCoincide(pelicula)){
             let contador = 1;
             let generos = "";
-            
+
             for (let genre of pelicula.genres) {
                 generos += `${genre.name} - `;
             }
@@ -92,7 +92,7 @@ function mostrarPeliculas(arrayPeliculas){
                     <h4 class="offcanvas-title" id="offcanvasTopLabel">${pelicula.title}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <div class="offcanvas-body">
+                <div class="offcanvas-body" style="overflow:inherit">
                     <p>${pelicula.overview}</p>
                     <hr>
                     <div class="row">
