@@ -73,11 +73,11 @@ function mostrarPeliculas(arrayPeliculas){
             contenidoHTML += `
             <li class="list-group-item bg-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
                 <div class="row">
-                    <div class="col-10 text-white">
+                    <div class="col-8 col-sm-9 col-md-10 col-xl-11 text-white">
                         <h5>${pelicula.title}</h5>
                         <p class="text-muted">${pelicula.tagline}</p>
                     </div>
-                    <div class="col-2 text-white">
+                    <div class="col-4 col-sm-3 col-md-2 col-xl-1 text-white">
                         <p>${stars}</p>
                     </div>
                 </div>
@@ -91,10 +91,10 @@ function mostrarPeliculas(arrayPeliculas){
                     <p>${pelicula.overview}</p>
                     <hr>
                     <div class="row">
-                        <div class="col-9 col-lg-11">
+                        <div class="col-9 col-sm-10 col-lg-11">
                             <p class="text-muted">${generos}</p>
                         </div>
-                        <div class="col-3 col-lg-1">
+                        <div class="col-3 col-sm-2 col-lg-1">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Más
