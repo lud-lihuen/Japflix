@@ -41,14 +41,27 @@ function cargarPelicula(){
 function mostrarPeliculas(arrayPeliculas){
     let contenidoHTML = '';
     let lista = document.getElementById("lista");
+    let generos = "";
     for (let pelicula of arrayPeliculas) {
         
         if((contenidoBuscador != undefined) && (contenidoBuscador != "") && busquedaCoincide(pelicula)){
+            let contador = 1;
+            for (let genre of pelicula.genres) {
+                generos += `${genre.name} - `;
+            }
+            generos = generos.substring(0,generos.length -2)
             contenidoHTML += `
-            <li class="list-group-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-                <h5>${pelicula.title}</h5>
-                <p>${pelicula.tagline}</p>
-                <p>${pelicula.vote_average}</p>
+            <li class="list-group-item bg-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                <div class="row">
+                    <div class="col-10 text-white">
+                        <h5>${pelicula.title}</h5>
+                        <p class="text-muted">${pelicula.tagline}</p>
+                    </div>
+                    <div class="col-2 text-white">
+                        <p>${pelicula.vote_average}</p>
+                    </div>
+                   
+                </div>
             </li>
             <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
                 <div class="offcanvas-header">
@@ -58,16 +71,25 @@ function mostrarPeliculas(arrayPeliculas){
                 <div class="offcanvas-body">
                     <p>${pelicula.overview}</p>
                     <hr>
-                    <p>genero</p>
-                    <button class="btn"></button>
+                    <div class="row">
+                        <div class="col-9">
+                            <p>${generos}</p>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn"></button>
+                        </div>
+                    </div>
+                    
+                    
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
+                            Más
                         </button>
                         <ul class="dropdown-menu">
-                            <li>Año: ${pelicula.}</li>
-                            <li>Another action</li>
-                            <li>Something else here</li>
+                            <li>Año: ${pelicula.release_date.split('-')[0]}</li>
+                            <li>Duración: ${pelicula.runtime} mins</li>
+                            <li>Presupuesto: $${pelicula.budget}</li>
+                            <li>Ganancias: $${pelicula.revenue}</li>
                         </ul>
                     </div>
                 </div>
