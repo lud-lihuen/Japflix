@@ -27,3 +27,6 @@ main {
     height: fit-content;
 }
 
+.offcanvas-body li{
+    margin-left: 10px;
+}

@@ -41,11 +41,14 @@ function cargarPelicula(){
 function mostrarPeliculas(arrayPeliculas){
     let contenidoHTML = '';
     let lista = document.getElementById("lista");
-    let generos = "";
+    
+    let counter = 0;
     for (let pelicula of arrayPeliculas) {
         
         if((contenidoBuscador != undefined) && (contenidoBuscador != "") && busquedaCoincide(pelicula)){
             let contador = 1;
+            let generos = "";
+            
             for (let genre of pelicula.genres) {
                 generos += `${genre.name} - `;
             }
@@ -54,7 +57,7 @@ function mostrarPeliculas(arrayPeliculas){
             stars = ""
             let i = 0
             score = (Math.round(pelicula.vote_average)/2)-1;
-            console.log(score)
+            
             while(i<score){
                 stars += `<span class="fa fa-star checked"></span>`
                 i++
@@ -69,9 +72,11 @@ function mostrarPeliculas(arrayPeliculas){
                 stars += `<span class="fa fa-star-o"></span>`
                 i++
             }
+
+            proxid = 'elem'+counter.toString();
             
             contenidoHTML += `
-            <li class="list-group-item bg-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+            <li class="list-group-item bg-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#${proxid}" aria-controls="proxid">
                 <div class="row">
                     <div class="col-8 col-sm-9 col-md-10 col-xl-11 text-white">
                         <h5>${pelicula.title}</h5>
@@ -82,7 +87,7 @@ function mostrarPeliculas(arrayPeliculas){
                     </div>
                 </div>
             </li>
-            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="${proxid}" aria-labelledby="offcanvasTopLabel">
                 <div class="offcanvas-header">
                     <h4 class="offcanvas-title" id="offcanvasTopLabel">${pelicula.title}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -99,21 +104,22 @@ function mostrarPeliculas(arrayPeliculas){
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Más
                                 </button>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu ">
                                     <li>Año: ${pelicula.release_date.split('-')[0]}</li>
+                                    <hr>
                                     <li>Duración: ${pelicula.runtime} mins</li>
+                                    <hr>
                                     <li>Presupuesto: $${pelicula.budget}</li>
+                                    <hr>
                                     <li>Ganancias: $${pelicula.revenue}</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
                 </div>
             </div>
             `;
+            counter++;
         }
     }
     lista.innerHTML = contenidoHTML;
