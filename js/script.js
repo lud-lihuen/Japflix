@@ -69,7 +69,7 @@ function mostrarPeliculas(arrayPeliculas){
                 i++
             }
             while(i<5){
-                stars += `<span class="fa fa-star-o"></span>`
+                stars += `<span class="fa fa-star-o" style="color:orange"></span>`
                 i++
             }
 
